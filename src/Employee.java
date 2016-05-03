@@ -10,6 +10,22 @@ public class Employee implements Serializable {
 	private String designation;
 	private int salary;
 	private String company;
+	private String gender;
+
+	/**
+	 * @return the gender
+	 */
+	public String getGender() {
+		return gender;
+	}
+
+	/**
+	 * @param gender
+	 *            the gender to set
+	 */
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
 
 	/**
 	 * @return the name
@@ -79,7 +95,7 @@ public class Employee implements Serializable {
 	@Override
 	public String toString() {
 		return "Employee [name=" + name + ", designation=" + designation + ", salary=" + salary + ", company=" + company
-				+ "]";
+				+ ", gender=" + gender + "]";
 	}
 
 }
