@@ -50,7 +50,7 @@ public class CouchbaseWrapper {
 
 	public static boolean createView(String viewName, String function) {
 		DesignDocument doc = new DesignDocument("dev_search");
-		ViewDesign design = new ViewDesign(viewName, function);
+		ViewDesign design = new ViewDesign(viewName, function, "count");
 		doc.getViews().add(design);
 		if (client.createDesignDoc(doc)) {
 			return true;
@@ -73,5 +73,25 @@ public class CouchbaseWrapper {
 			// resultSet.add(row);
 		}
 		// return resultSet;
+	}
+
+	public static int count(String key, String viewName) {
+		View view = client.getView("search", viewName);
+		Query query = new Query();
+		query.setInclusiveEnd(true);
+		query.setKey(key);
+		query.setLimit(1);
+		query.setSkip(0);
+		query.setStale(Stale.FALSE);
+		query.setReduce(true);
+		ViewResponse response = client.query(view, query);
+		int total = 0;
+		for (ViewRow row : response) {
+			total += Integer.parseInt(row.getValue());
+		}
+		System.out.println("total iS:" + total);
+		// System.out.println(response.iterator().);
+		return total;
+
 	}
 }
