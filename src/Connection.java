@@ -28,10 +28,9 @@ public class Connection {
 		// mapList = CouchbaseWrapper.findAll(keyList);
 		// Employee empView = (Employee) mapList.get("TESCO:EMP:ID:Randhir");
 		// System.out.println(empView);
-		// String function = "function(doc,meta){\n" + "if(doc.name){\n" +
-		// "emit(doc.name,doc)}\n" + "}";
-		// CouchbaseWrapper.createView("byName", function);
-		CouchbaseWrapper.searchByView("shashi", "byName");
+//		String function = "function(doc,meta){\n" + "if(doc.name){\n" + "emit(doc.name,doc)}\n" + "}";
+//		CouchbaseWrapper.createView("byName", function);
+		CouchbaseWrapper.count("shashi", "byName");
 		CouchbaseWrapper.closeConnection();
 	}
 
